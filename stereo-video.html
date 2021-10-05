@@ -46,7 +46,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     </header>
     <script type="module">
       import {WebXRButton} from './js/util/webxr-button.js';
-      import {Scene} from './js/render/scenes/scene.js';
+//       import {Scene} from './js/render/scenes/scene.js';
       import {Renderer, createWebGLContext} from './js/render/core/renderer.js';
       import {UrlTexture} from './js/render/core/texture.js';
       import {ButtonNode} from './js/render/nodes/button.js';
@@ -72,9 +72,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       // WebGL scene globals.
       let gl = null;
       let renderer = null;
-      let scene = new Scene();
-      scene.addNode(new Gltf2Node({url: 'media/gltf/home-theater/home-theater.gltf'}));
-      scene.enableStats(false);
+//       let scene = new Scene();
+//       scene.addNode(new Gltf2Node({url: 'media/gltf/home-theater/home-theater.gltf'}));
+//       scene.enableStats(false);
 
       let video = document.createElement('video');
       video.loop = true;
@@ -101,7 +101,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       // Values determined experimentally and with many refreshes.
       videoNode.translation = [0.025, 0.275, -4.4];
       videoNode.scale = [2.1, 1.1, 1.0];
-      scene.addNode(videoNode);
+//       scene.addNode(videoNode);
 
       video.addEventListener('loadeddata', () => {
         // Once the video has loaded up adjust the aspect ratio of the "screen"
@@ -129,7 +129,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       // bigger.
       playButton.translation = [0.025, 0.275, -4.2];
       playButton.scale = [5.0, 5.0, 5.0];
-      scene.addNode(playButton);
+//       scene.addNode(playButton);
 
       function initXR() {
         xrButton = new WebXRButton({
@@ -164,7 +164,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         onResize();
 
         renderer = new Renderer(gl);
-        scene.setRenderer(renderer);
+//         scene.setRenderer(renderer);
       }
 
       function onRequestSession() {
@@ -206,11 +206,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           let refSpace = ev.frame.session.isImmersive ?
                            xrImmersiveRefSpace :
                            inlineViewerHelper.referenceSpace;
-          scene.handleSelect(ev.inputSource, ev.frame, refSpace);
+//           scene.handleSelect(ev.inputSource, ev.frame, refSpace);
         });
 
         initGL();
-        scene.inputRenderer.useProfileControllerMeshes(session);
+//         scene.inputRenderer.useProfileControllerMeshes(session);
 
         let glLayer = new XRWebGLLayer(session, gl);
         session.updateRenderState({ baseLayer: glLayer });
@@ -249,15 +249,15 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                          inlineViewerHelper.referenceSpace;
         let pose = frame.getViewerPose(refSpace);
 
-        scene.startFrame();
+//         scene.startFrame();
 
         session.requestAnimationFrame(onXRFrame);
 
-        scene.updateInputSources(frame, refSpace);
+//         scene.updateInputSources(frame, refSpace);
 
-        scene.drawXRFrame(frame, pose);
+//         scene.drawXRFrame(frame, pose);
 
-        scene.endFrame();
+//         scene.endFrame();
       }
 
       // Start the XR application.
